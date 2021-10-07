@@ -5,7 +5,10 @@
  */
 package com.epsi.gosecuri;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import org.apache.commons.io.FileUtils;
 
 /**
  *
@@ -19,6 +22,9 @@ public class Agent {
     private String password;
     private String mission;
     private ArrayList<String> stuffList;
+    
+    private final String ressourceDirPath = "src\\main\\java\\com\\epsi\\gosecuri\\ressourceFiles\\";
+
 
     public Agent(String nom, String prenom, String password, String mission, ArrayList<String> stuffList) {
         this.nom = nom;
@@ -30,12 +36,41 @@ public class Agent {
         this.stuffList = stuffList;
     }
     
-    public void generateAgentFile(){
-        
+    public String generateAgentFile(){
+        String res = "";
+          try{
+                //Récupération du template html
+                File htmlAgentFileBody = new File(this.ressourceDirPath+"agentFileBody.html");
+                String htmlString = FileUtils.readFileToString(htmlAgentFileBody);
+
+                //Initialisation des variables avec le contenu à ajouter
+                String identity = this.getIdentity();
+                String photo = this.photoPath;
+
+                //Ajoute le contenu dans la page Html
+                htmlString = htmlString.replace("$mission",this.mission);
+                htmlString = htmlString.replace("$identity", identity);
+                htmlString = htmlString.replace("$photo", photo);
+                
+                res = htmlString;
+            }
+            catch(IOException e){
+                e.printStackTrace();
+            }
+        return res;
+    }
+
+    public ArrayList<String> getStuffList() {
+        return stuffList;
     }
     
+       
     public String getIdentity(){
         return this.nom+" "+this.prenom;
+    }
+    
+    public String getFileName(){
+        return (this.prenom.toCharArray()[0]+this.nom).toLowerCase();
     }
     
     public String toString(){

@@ -13,9 +13,10 @@ public class App {
     
     public static void main (String[] args){
         Generator gene = new Generator();
-        gene.readStaffFile();
-        gene.readStuffFile();
-        gene.readAgentFile();
+        //gene.readStaffFile();
+        //gene.readStuffFile();
+        //gene.readAgentFile();
+        //gene.createHomePage();
     }
     
 }
