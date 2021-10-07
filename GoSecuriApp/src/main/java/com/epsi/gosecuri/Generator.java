@@ -5,6 +5,8 @@
  */
 package com.epsi.gosecuri;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author loicb
@@ -12,6 +14,8 @@ package com.epsi.gosecuri;
 public class Generator {
     
     private String mainDirPath;
+    private ArrayList<String> agentList;
+    private ArrayList<String> stuffList;
     private final String  staffFile = "staff.txt";
     private final String  listFile = "liste.txt";
     
@@ -24,6 +28,18 @@ public class Generator {
     }
     
     public void createAgentFile(){
+        
+    }
+    
+    public void readListFile(){
+        
+    }
+    
+    public void readAgentFile(){
+        
+    }
+    
+    public void readStuffFile(){
         
     }
 }
