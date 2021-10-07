@@ -20,10 +20,11 @@ public class Agent {
     private String mission;
     private ArrayList<String> stuffList;
 
-    public Agent(String nom, String prenom, String photoPath, String password, String mission, ArrayList<String> stuffList) {
+    public Agent(String nom, String prenom, String password, String mission, ArrayList<String> stuffList) {
         this.nom = nom;
         this.prenom = prenom;
-        this.photoPath = photoPath;
+        this.photoPath = prenom.toCharArray()[0]+nom+".jpg";
+        this.photoPath = this.photoPath.toLowerCase();
         this.password = password;
         this.mission = mission;
         this.stuffList = stuffList;
@@ -33,5 +34,18 @@ public class Agent {
         
     }
     
+    public String getIdentity(){
+        return this.nom+" "+this.prenom;
+    }
+    
+    public String toString(){
+        String res;
+        res = "Nom: "+this.nom+" Prenom: "+this.prenom;
+        res += "\n mdp: "+this.password;
+        res += "\n mission: "+this.mission;
+        res += "\n Liste de matériel: "+this.stuffList.toString();
+        res += "\n Chemin de la photo: "+this.photoPath;
+        return res;
+    }
     
 }
