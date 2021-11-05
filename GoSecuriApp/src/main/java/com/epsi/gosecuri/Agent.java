@@ -23,13 +23,13 @@ public class Agent {
     private String mission;
     private ArrayList<String> stuffList;
     
-    private final String ressourceDirPath = "src\\main\\java\\com\\epsi\\gosecuri\\ressourceFiles\\";
+    private final String htmlDirPath = "src\\main\\java\\com\\epsi\\gosecuri\\htmlFiles\\";
 
 
     public Agent(String nom, String prenom, String password, String mission, ArrayList<String> stuffList) {
         this.nom = nom;
         this.prenom = prenom;
-        this.photoPath = prenom.toCharArray()[0]+nom+".jpg";
+        this.photoPath = "..\\ressourceFiles\\"+prenom.toCharArray()[0]+nom+".jpg";
         this.photoPath = this.photoPath.toLowerCase();
         this.password = password;
         this.mission = mission;
@@ -40,7 +40,7 @@ public class Agent {
         String res = "";
           try{
                 //Récupération du template html
-                File htmlAgentFileBody = new File(this.ressourceDirPath+"agentFileBody.html");
+                File htmlAgentFileBody = new File(this.htmlDirPath+"agentFileBody.html");
                 String htmlString = FileUtils.readFileToString(htmlAgentFileBody);
 
                 //Initialisation des variables avec le contenu à ajouter

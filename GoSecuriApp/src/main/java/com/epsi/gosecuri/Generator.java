@@ -19,18 +19,18 @@ import org.apache.commons.io.FileUtils;
  */
 public class Generator {
     
-    private String mainDirPath;
     //Chemin relatif pour le dossier ressource
     private final String ressourceDirPath = "src\\main\\java\\com\\epsi\\gosecuri\\ressourceFiles\\";
-    private final String  staffFile = "staff.txt";
-    private final String  stuffFile = "liste.txt";
+    private final String htmlDirPath = "src\\main\\java\\com\\epsi\\gosecuri\\htmlFiles\\";
+    private final String generatedFilesDirPath = "src\\main\\java\\com\\epsi\\gosecuri\\generatedFiles\\";
+    private final String staffFile = "staff.txt";
+    private final String stuffFile = "liste.txt";
     
     private ArrayList<Agent> agentList = new ArrayList<>();
     private ArrayList<String> agentNameList = new ArrayList<>();
     private HashMap<String,String> stuffList = new HashMap<>();
     
-    public Generator(/*String mainDirPath*/){
-        //this.mainDirPath = mainDirPath;
+    public Generator() throws IOException{
         this.readStuffFile();
         this.readStaffFile();
         this.readAgentFile();
@@ -44,7 +44,7 @@ public class Generator {
     private void createHomePage(){
         try{
             //Récupération du template html
-            File htmlTemplateFile = new File(this.ressourceDirPath+"template.html");
+            File htmlTemplateFile = new File(this.htmlDirPath+"template.html");
             String htmlString = FileUtils.readFileToString(htmlTemplateFile);
             
             //Initialisation des variables avec le contenu à ajouter
@@ -69,7 +69,7 @@ public class Generator {
             htmlString = htmlString.replace("$body", body);
             
             //Création du fichier Html
-            File newHtmlFile = new File(this.ressourceDirPath+"index.html");
+            File newHtmlFile = new File(this.generatedFilesDirPath+"index.html");
             FileUtils.writeStringToFile(newHtmlFile, htmlString);
         }
         catch(IOException e){
@@ -99,7 +99,7 @@ public class Generator {
         for(Agent agent:this.agentList){
             try{
                 //Récupération du template html
-                File htmlTemplateFile = new File(this.ressourceDirPath+"template.html");
+                File htmlTemplateFile = new File(this.htmlDirPath+"template.html");
                 String htmlString = FileUtils.readFileToString(htmlTemplateFile);
 
                 //Initialisation des variables avec le contenu à ajouter
@@ -122,7 +122,7 @@ public class Generator {
                 htmlString = htmlString.replace("$body", body);
 
                 //Création du fichier Html
-                File newHtmlFile = new File(this.ressourceDirPath+agent.getFileName()+".html");
+                File newHtmlFile = new File(this.generatedFilesDirPath+agent.getFileName()+".html");
                 FileUtils.writeStringToFile(newHtmlFile, htmlString);
             }
             catch(IOException e){
@@ -185,8 +185,7 @@ public class Generator {
                 stuffList = new ArrayList<>();
                 
                 // Le fichier d'entrée
-                //File lcStaffFile = new File(this.mainDirPath+this.name); // Pour release
-                File lcAgentFile = new File("C:\\Users\\loicb\\Documents\\NetBeansProjects\\gosecuri\\GoSecuriApp\\src\\main\\java\\filesForTest\\"+name+".txt"); //Pour debug
+                File lcAgentFile = new File(this.ressourceDirPath+name+".txt"); // Pour release
                 
                 // Créer l'objet File Reader
                 FileReader fr = new FileReader(lcAgentFile);
@@ -241,10 +240,9 @@ public class Generator {
     private void readStuffFile(){
         try{
             // Le fichier d'entrée
-            //File lcStaffFile = new File(this.mainDirPath+this.stuffFile); // Pour release
-            File lcStuffFile = new File("C:\\Users\\loicb\\Documents\\NetBeansProjects\\gosecuri\\GoSecuriApp\\src\\main\\java\\filesForTest\\liste.txt"); //Pour debug
+            File lcStaffFile = new File(this.ressourceDirPath+this.stuffFile); // Pour releas
             // Créer l'objet File Reader
-            FileReader fr = new FileReader(lcStuffFile);
+            FileReader fr = new FileReader(lcStaffFile);
             // Créer l'objet BufferedReader        
             BufferedReader br = new BufferedReader(fr);
 
@@ -284,8 +282,7 @@ public class Generator {
     private void readStaffFile(){
         try{
             // Le fichier d'entrée
-            //File lcStaffFile = new File(this.mainDirPath+this.staffFile); // Pour release
-            File lcStaffFile = new File("C:\\Users\\loicb\\Documents\\NetBeansProjects\\gosecuri\\GoSecuriApp\\src\\main\\java\\filesForTest\\staff.txt"); //Pour debug
+            File lcStaffFile = new File(this.ressourceDirPath+this.staffFile); // Pour release
             // Créer l'objet File Reader
             FileReader fr = new FileReader(lcStaffFile);
             // Créer l'objet BufferedReader        
