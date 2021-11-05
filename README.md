@@ -79,3 +79,5 @@ L’infrastructure ajoutée est schématisée en vert sur le schéma suivant :
       issue du serveur) 
       • la liste du matériel en sa possession pour le 
       mission actuelle
+      
+      //TEST
