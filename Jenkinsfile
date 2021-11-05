@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Compiler') {
       steps {
-        sh 'java -version'
+        sh 'java -version && pwd'
       }
     }
 
