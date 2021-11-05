@@ -5,21 +5,6 @@ pipeline {
     nodejs 'NodeJS'
   }
   stages {
-    stage('Prepare') {
-      steps {
-        script {
-          sh 'npm install yarn -g'
-          sh 'yarn install'
-        }
-      }
-    }
-    stage('Build') {
-      steps {
-        script {
-          sh 'yarn build'
-        }
-      }
-    }
     stage('Get JWT Token') {
       steps {
         script {
