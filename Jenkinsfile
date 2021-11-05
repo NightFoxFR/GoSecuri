@@ -13,13 +13,6 @@ pipeline {
         }
       }
     }
-    stage('Test') {
-      steps {
-        script {
-          sh 'yarn test'
-        }
-      }
-    }
     stage('Build') {
       steps {
         script {
