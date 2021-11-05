@@ -64,7 +64,7 @@ public class Generator {
             
             //Ajoute le contenu dans la page Html
             htmlString = htmlString.replace("$title", title);
-            htmlString = htmlString.replace("$logo", "GoSecuri.png");
+            htmlString = htmlString.replace("$logo", "..\\ressourceFiles\\GoSecuri.png");
             htmlString = htmlString.replace("$header", header);
             htmlString = htmlString.replace("$body", body);
             
