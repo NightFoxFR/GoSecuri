@@ -5,18 +5,16 @@
  */
 package com.epsi.gosecuri;
 
+import java.io.IOException;
+
 /**
  *
  * @author loicb
  */
 public class App {
     
-    public static void main (String[] args){
+    public static void main (String[] args) throws IOException{
         Generator gene = new Generator();
-        //gene.readStaffFile();
-        //gene.readStuffFile();
-        //gene.readAgentFile();
-        //gene.createHomePage();
     }
     
 }
