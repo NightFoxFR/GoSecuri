@@ -1,9 +1,9 @@
 pipeline {
   agent any
   stages {
-    stage('TEST') {
+    stage('Compiler') {
       steps {
-        sh 'echo "test"'
+        sh 'java -version'
       }
     }
 
