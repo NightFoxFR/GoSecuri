@@ -1,29 +1,39 @@
 # GoSecuri
 
 1 - Les objectifs 
-  Le travail demandé sur ce projet consiste à :
-  • Configurer un serveur web avec un accès ssh pour sa maintenance et le déploiement des fichiers 
-  statiques,
-  • Ecrire d’un ou plusieurs programmes java destinés à générer les fichiers du serveur web. Leurs sources 
-  seront stockés sur le dépôt git de sauvegarde,
-  • Configurer un serveur jenkins capable d’accéder au dépôt de sauvegarde et au serveur web,
-  • Concevoir un ou plusieurs pipeline(s) jenkins de génération de la ou des application(s) java,
-  • Concevoir le pipeline jenkins de génération et déploiement des fichiers du serveur web
+
+  Le travail demandé sur ce projet consiste à : 
+  
+ - Configurer un serveur web avec un accès ssh pour sa maintenance et le déploiement des fichiers 
+  statiques
+  
+  - Ecrire d’un ou plusieurs programmes java destinés à générer les fichiers du serveur web. Leurs sources 
+  seront stockés sur le dépôt git de sauvegarde
+  
+  - Configurer un serveur jenkins capable d’accéder au dépôt de sauvegarde et au serveur web
+  
+  - Concevoir un ou plusieurs pipeline(s) jenkins de génération de la ou des application(s) java
+  
+  - Concevoir le pipeline jenkins de génération et déploiement des fichiers du serveur web
   
 L’infrastructure ajoutée est schématisée en vert sur le schéma suivant :
+
 2 - Les cibles 
+
   L’application sera utilisée par l’ensemble des agents de sécurité de la société.
-  Cahier des charges de la MSPR – Bloc E6.1 – Avril 2021 6/9
-  Direction Innovation & Pédagogie
+
   
 3 - Le type de solution 
+
   Ce projet a pour objectif de développer un système sur-mesure de vérification de l’accès à un local, ainsi qu’à 
   la visualisation de l’affectation du matériel aux agents.
   Les solutions sur-mesure permettent de proposer un système parfaitement adapté aux besoins de 
   l’utilisateur. C’est l’un des espoirs sur lesquels se repose cette demande.
   
 4 - Les besoins fonctionnels 
+
   La solution proposée doit satisfaire d’une façon informelle les fonctionnalités suivantes :
+  
   - La navigation sur les fiches des agents
   - L’actualisation des pages statiques par génération à partir des modifications du dépôt git
   - La vérification de l’accès aux fiches par authentification intégrée apache (.htpasswd)
