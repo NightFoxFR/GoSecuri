@@ -24,7 +24,7 @@ pipeline {
         }
       }
       steps {
-        sh 'cat /etc/nginx/conf.d/default.conf'
+        sh 'pwd && cat /etc/nginx/conf.d/default.conf'
         //dir('/usr/share/nginx/html'){
         dir('generatedFiless'){
           unstash 'generatedFiles'
