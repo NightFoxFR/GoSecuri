@@ -12,6 +12,7 @@ pipeline {
         sh 'ls -la && cd GoSecuriApp && java -jar target/GoSecuriApp-1.0-SNAPSHOT.jar && ls -la'
         sh 'docker ps'
         
+        sh 'mkdir /gosecuri'
         sh 'cp GoSecuriApp/src/main/java/com/epsi/gosecuri/generatedFiles/*  /gosecuri/'
         sh 'cp -r GoSecuriApp/src/main/java/com/epsi/gosecuri/ressourceFiles/ /gosecuri/'
         
