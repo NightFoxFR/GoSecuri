@@ -36,7 +36,7 @@ pipeline {
                 // Build the image
                 withCredentials([usernamePassword(credentialsId: 'Github', usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_PASSWORD')]) {
                     def repoURL = """
-                    https://manage-portainer.sk4m.fr/api/endpoints/1/docker/build?t=GoSecuri:latest&remote=https://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@github.com/$GITHUB_USERNAME/GoSecuri.git&dockerfile=Dockerfile&nocache=true
+                    https://manage-portainer.sk4m.fr/api/endpoints/1/docker/build?t=GoSecuri:latest&remote=https://$GITHUB_USERNAME:$GITHUB_PASSWORD@github.com/$GITHUB_USERNAME/GoSecuri.git&dockerfile=Dockerfile&nocache=true
                     """
                     def imageResponse = httpRequest httpMode: 'POST', ignoreSslErrors: true, url: repoURL, validResponseCodes: '200', customHeaders:[[name:"Authorization", value: env.JWTTOKEN ], [name: "cache-control", value: "no-cache"]]
                 }
