@@ -31,10 +31,11 @@ pipeline {
           unstash 'ressourceFiles'
         }
         sh 'ls -la'
-        sh 'ls -la html/'
-        sh 'ls -la html/GoSecuriApp/src/main/java/com/epsi/gosecuri/'
-        sh 'ls -la html/GoSecuriApp/src/main/java/com/epsi/gosecuri/generatedFiles/'
-        sh 'ls -la html/GoSecuriApp/src/main/java/com/epsi/gosecuri/ressourceFiles/'
+        sh 'mkdir /usr/share/nginx/html/ressourceFiles'
+        sh 'cp html/GoSecuriApp/src/main/java/com/epsi/gosecuri/generatedFiles/  /usr/share/nginx/html/'
+        sh 'cp html/GoSecuriApp/src/main/java/com/epsi/gosecuri/ressourceFiles/ /usr/share/nginx/html/ressourceFiles/'
+        sh 'ls -la  /usr/share/nginx/html/'
+        sh 'ls -la  /usr/share/nginx/html/ressourceFiles/'
       }
     }
 
