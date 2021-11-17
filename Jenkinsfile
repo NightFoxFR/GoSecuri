@@ -18,7 +18,7 @@ pipeline {
         stage('Get JWT Token') {
             steps {
             script {
-                withCredentials([usernamePassword(credentialsId: 'Portainer', usernameVariable: 'sk4m', passwordVariable: 'Yakuza89!Alaplage')]) {
+                withCredentials([usernamePassword(credentialsId: 'Portainer', usernameVariable: 'PORTAINER_USERNAME', passwordVariable: 'PORTAINER_PASSWORD')]) {
                     def json = """
                         {"Username": "$PORTAINER_USERNAME", "Password": "$PORTAINER_PASSWORD"}
                     """
@@ -34,7 +34,7 @@ pipeline {
             steps {
             script {
                 // Build the image
-                withCredentials([usernamePassword(credentialsId: 'Github', usernameVariable: 'LoicBrison')]) {
+                withCredentials([usernamePassword(credentialsId: 'Github', usernameVariable: 'GITHUB_USERNAME')]) {
                     def repoURL = """
                     https://manage-portainer.sk4m.fr/api/endpoints/1/docker/build?t=GoSecuri:latest&remote=https://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@github.com/$GITHUB_USERNAME/GoSecuri.git&dockerfile=Dockerfile&nocache=true
                     """
@@ -79,7 +79,7 @@ pipeline {
 
                     // Stack does not exist
                     // Generate JSON for when the stack is created
-                    withCredentials([usernamePassword(credentialsId: 'Github', usernameVariable: 'LoicBrison', passwordVariable: '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')]) {
+                    withCredentials([usernamePassword(credentialsId: 'Github', usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_PASSWORD')]) {
                         def swarmResponse = httpRequest acceptType: 'APPLICATION_JSON', validResponseCodes: '200', httpMode: 'GET', ignoreSslErrors: true, consoleLogResponseBody: true, url: "https://manage-portainer.sk4m.fr/api/endpoints/1/docker/swarm", customHeaders:[[name:"Authorization", value: env.JWTTOKEN ], [name: "cache-control", value: "no-cache"]]
                         def swarmInfo = new groovy.json.JsonSlurper().parseText(swarmResponse.getContent())
 
