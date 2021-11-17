@@ -5,9 +5,9 @@ pipeline {
         nodejs 'NodeJS'
     }
     stages {
-        stage('Compiler') {
+        stage('Build') {
             steps {
-                sh 'ls -la && cd GoSecuriApp && mvn --version && mvn clean && mvn package && mvn install && java -jar target/GoSecuriApp-1.0-SNAPSHOT.jar'
+                sh 'ls -la && cd GoSecuriApp && mvn --version && mvn clean && mvn package && mvn install'
             }
         }
         stage('Run') {
@@ -15,5 +15,16 @@ pipeline {
                 sh 'ls -la && cd GoSecuriApp && java -jar target/GoSecuriApp-1.0-SNAPSHOT.jar'
             }
         }
+        stage('Deploy') {
+            //agent {
+                //docker {
+                    //image 'nginx:latest'
+                    //args '-p 80:80'
+                //}
+            //}
+            steps {
+                sh 'docker ps'
+            }
+        }    
     }
 }
