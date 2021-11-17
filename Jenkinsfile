@@ -6,11 +6,11 @@ pipeline {
   stages {
     stage('Compiler') {
       steps {
-         sh 'cd GoSecuriApp '
-         sh 'mvn --version'
-         sh 'mvn clean'
-         sh 'mvn package'
-         sh 'mvn install'
+         sh 'ls -la && cd GoSecuriApp '
+         sh 'ls -la && mvn --version'
+         sh 'ls -la && mvn clean'
+         sh 'ls -la && mvn package'
+         sh 'ls -la && mvn install'
       }
     }
 
