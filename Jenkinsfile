@@ -9,7 +9,8 @@ pipeline {
 
     stage('Run') {
       steps {
-        sh 'ls -la && cd GoSecuriApp && java -jar target/GoSecuriApp-1.0-SNAPSHOT.jar'
+        sh 'ls -la && cd GoSecuriApp && java -jar target/GoSecuriApp-1.0-SNAPSHOT.jar && ls -la'
+
       }
     }
 
