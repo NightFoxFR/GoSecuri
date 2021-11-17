@@ -7,6 +7,8 @@ package com.epsi.gosecuri;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import org.apache.commons.io.FileUtils;
 
@@ -40,8 +42,9 @@ public class Agent {
         String res = "";
           try{
                 //Récupération du template html
-                File htmlAgentFileBody = new File(this.htmlDirPath+"agentFileBody.html");
-                String htmlString = FileUtils.readFileToString(htmlAgentFileBody);
+                //File htmlAgentFileBody = new File(this.htmlDirPath+"agentFileBody.html");
+                //String htmlString = FileUtils.readFileToString(htmlAgentFileBody);
+                String htmlString = Files.readString(Paths.get(this.htmlDirPath+"agentFileBody.html"));
 
                 //Initialisation des variables avec le contenu à ajouter
                 String identity = this.getIdentity();

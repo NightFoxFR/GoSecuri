@@ -9,6 +9,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.apache.commons.io.FileUtils;
@@ -44,8 +47,9 @@ public class Generator {
     private void createHomePage(){
         try{
             //Récupération du template html
-            File htmlTemplateFile = new File(this.htmlDirPath+"template.html");
-            String htmlString = FileUtils.readFileToString(htmlTemplateFile);
+            //File htmlTemplateFile = new File(this.htmlDirPath+"template.html");
+            //String htmlString = FileUtils.readFileToString(htmlTemplateFile);
+            String htmlString = Files.readString(Paths.get(this.htmlDirPath+"template.html"));
             
             //Initialisation des variables avec le contenu à ajouter
             String title = "Accueil";
@@ -69,8 +73,9 @@ public class Generator {
             htmlString = htmlString.replace("$body", body);
             
             //Création du fichier Html
-            File newHtmlFile = new File(this.generatedFilesDirPath+"index.html");
-            FileUtils.writeStringToFile(newHtmlFile, htmlString);
+            //File newHtmlFile = new File(this.generatedFilesDirPath+"index.html");
+            //FileUtils.writeStringToFile(newHtmlFile, htmlString);
+            Files.write(Paths.get(this.generatedFilesDirPath+"index.html"),htmlString.getBytes());
         }
         catch(IOException e){
             e.printStackTrace();
@@ -99,8 +104,9 @@ public class Generator {
         for(Agent agent:this.agentList){
             try{
                 //Récupération du template html
-                File htmlTemplateFile = new File(this.htmlDirPath+"template.html");
-                String htmlString = FileUtils.readFileToString(htmlTemplateFile);
+                //File htmlTemplateFile = new File(this.htmlDirPath+"template.html");
+                //String htmlString = FileUtils.readFileToString(htmlTemplateFile);
+                String htmlString = Files.readString(Paths.get(this.htmlDirPath+"template.html"));
 
                 //Initialisation des variables avec le contenu à ajouter
                 String title = agent.getIdentity()+" - Fiche agent";
@@ -122,8 +128,9 @@ public class Generator {
                 htmlString = htmlString.replace("$body", body);
 
                 //Création du fichier Html
-                File newHtmlFile = new File(this.generatedFilesDirPath+agent.getFileName()+".html");
-                FileUtils.writeStringToFile(newHtmlFile, htmlString);
+                //File newHtmlFile = new File(this.generatedFilesDirPath+agent.getFileName()+".html");
+                //FileUtils.writeStringToFile(newHtmlFile, htmlString);
+                Files.write(Paths.get(this.generatedFilesDirPath+agent.getFileName()+".html"),htmlString.getBytes());
             }
             catch(IOException e){
                 e.printStackTrace();
