@@ -39,7 +39,7 @@ public class Generator {
     }
     
     /**
-     * Créer la page d'accueil
+     * Créer la page d'accueil.
      */
     private void createHomePage(){
         try{
