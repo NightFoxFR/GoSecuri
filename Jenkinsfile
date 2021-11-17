@@ -16,14 +16,13 @@ pipeline {
             }
         }
         stage('Deploy') {
-            //agent {
-                //docker {
-                    //image 'nginx:latest'
-                    //args '-p 80:80'
-                //}
-            //}
+            agent {
+                docker {
+                    image 'gosecuri:latest'
+                }
+            }
             steps {
-                sh 'docker ps'
+                sh 'ls'
             }
         }    
     }
