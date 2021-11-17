@@ -26,7 +26,7 @@ pipeline {
       steps {
         sh 'cat /etc/nginx/conf.d/default.conf'
         //dir('/usr/share/nginx/html'){
-        dir('/'){
+        dir('/opt/jenkins_artifacts'){
           unstash 'generatedFiles'
           unstash 'ressourceFiles'
         }
