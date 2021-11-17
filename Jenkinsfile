@@ -16,11 +16,6 @@ pipeline {
             }
         }
         stage('Deploy') {
-            agent {
-                docker {
-                    image 'gosecuri:latest'
-                }
-            }
             steps {
                 sh 'pwd'
             }
