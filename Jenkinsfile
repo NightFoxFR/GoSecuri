@@ -18,10 +18,9 @@ pipeline {
         docker {
           image 'gosecuri:latest'
         }
-
       }
       steps {
-        sh 'pwd'
+        sh 'cat /etc/nginx/conf.d/default.conf'
       }
     }
 
