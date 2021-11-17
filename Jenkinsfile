@@ -11,6 +11,10 @@ pipeline {
       steps {
         sh 'ls -la && cd GoSecuriApp && java -jar target/GoSecuriApp-1.0-SNAPSHOT.jar && ls -la'
         sh 'docker ps'
+        
+        sh 'cp GoSecuriApp/src/main/java/com/epsi/gosecuri/generatedFiles/*  /gosecuri/'
+        sh 'cp -r GoSecuriApp/src/main/java/com/epsi/gosecuri/ressourceFiles/ /gosecuri/'
+        
         //sh 'cd GoSecuriApp/src/main/java/com/epsi/gosecuri/ && ls -la'
         stash includes: 'GoSecuriApp/src/main/java/com/epsi/gosecuri/generatedFiles/*', name: 'generatedFiles'
         stash includes: 'GoSecuriApp/src/main/java/com/epsi/gosecuri/ressourceFiles/*', name: 'ressourceFiles'
