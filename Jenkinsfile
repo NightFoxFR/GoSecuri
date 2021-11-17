@@ -34,7 +34,7 @@ pipeline {
             steps {
             script {
                 // Build the image
-                withCredentials([usernamePassword(credentialsId: 'Github', usernameVariable: 'GITHUB_USERNAME')]) {
+                withCredentials([usernamePassword(credentialsId: 'Github', usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_PASSWORD')]) {
                     def repoURL = """
                     https://manage-portainer.sk4m.fr/api/endpoints/1/docker/build?t=GoSecuri:latest&remote=https://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@github.com/$GITHUB_USERNAME/GoSecuri.git&dockerfile=Dockerfile&nocache=true
                     """
