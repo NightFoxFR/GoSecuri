@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Compiler') {
       steps {
-         sh 'mvn --version && ls -a && pwd && cd GoSecuriApp && mvn package && ls -a'
+         sh 'cd GoSecuriApp && mvn --version && ls -a && pwd &&  mvn package && ls -a'
       }
     }
 
