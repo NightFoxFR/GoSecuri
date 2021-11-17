@@ -32,8 +32,8 @@ pipeline {
         }
         sh 'ls -la'
         sh 'mkdir /usr/share/nginx/html/ressourceFiles'
-        sh 'cp html/GoSecuriApp/src/main/java/com/epsi/gosecuri/generatedFiles/  /usr/share/nginx/html/'
-        sh 'cp html/GoSecuriApp/src/main/java/com/epsi/gosecuri/ressourceFiles/ /usr/share/nginx/html/ressourceFiles/'
+        sh 'cp -r html/GoSecuriApp/src/main/java/com/epsi/gosecuri/generatedFiles/  /usr/share/nginx/html/'
+        sh 'cp -r html/GoSecuriApp/src/main/java/com/epsi/gosecuri/ressourceFiles/ /usr/share/nginx/html/ressourceFiles/'
         sh 'ls -la  /usr/share/nginx/html/'
         sh 'ls -la  /usr/share/nginx/html/ressourceFiles/'
       }
