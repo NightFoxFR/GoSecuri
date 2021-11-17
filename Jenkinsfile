@@ -24,6 +24,11 @@ pipeline {
       }
       steps {
         sh 'cat /etc/nginx/conf.d/default.conf'
+        dir('/usr/share/nginx/html'){
+          unstash 'generatedFiles'
+          unstash 'ressourceFiles'
+        }
+        sh 'ls -la'
       }
     }
 
