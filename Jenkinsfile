@@ -26,10 +26,11 @@ pipeline {
       steps {
         sh 'pwd && cat /etc/nginx/conf.d/default.conf'
         //dir('/usr/share/nginx/html'){
-        dir('generatedFiless'){
+        dir('html'){
           unstash 'generatedFiles'
+          unstash 'ressourceFiles'
         }
-        sh 'ls -la'
+        sh 'ls -la html/'
       }
     }
 
