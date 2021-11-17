@@ -30,7 +30,9 @@ pipeline {
           unstash 'generatedFiles'
           unstash 'ressourceFiles'
         }
+        sh 'ls -la'
         sh 'ls -la html/'
+        sh 'ls -la html/GosecuriApp'
       }
     }
 
