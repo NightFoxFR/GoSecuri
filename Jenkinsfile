@@ -20,6 +20,7 @@ pipeline {
       agent {
         docker {
           image 'gosecuri:latest'
+          args '-u root --privileged'
         }
       }
       steps {
