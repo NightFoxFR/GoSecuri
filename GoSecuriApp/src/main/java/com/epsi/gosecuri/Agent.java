@@ -32,7 +32,7 @@ public class Agent {
         this.nom = nom;
         this.prenom = prenom;
         this.photoPath = "../ressourceFiles/"+prenom.toCharArray()[0]+nom+".jpg";
-        this.photoPath = this.photoPath.toLowerCase();
+        // this.photoPath = this.photoPath.toLowerCase();
         this.password = password;
         this.mission = mission;
         this.stuffList = stuffList;
