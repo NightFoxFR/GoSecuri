@@ -32,7 +32,9 @@ pipeline {
         }
         sh 'ls -la'
         sh 'ls -la html/'
-        sh 'ls -la html/GoSecuriApp/'
+        sh 'ls -la html/GoSecuriApp/src/main/java/com/epsi/gosecuri/'
+        sh 'ls -la html/GoSecuriApp/src/main/java/com/epsi/gosecuri/generatedFiles/'
+        sh 'ls -la html/GoSecuriApp/src/main/java/com/epsi/gosecuri/ressourceFiles/'
       }
     }
 
