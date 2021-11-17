@@ -23,13 +23,13 @@ public class Agent {
     private String mission;
     private ArrayList<String> stuffList;
     
-    private final String htmlDirPath = "src\\main\\java\\com\\epsi\\gosecuri\\htmlFiles\\";
+    private final String htmlDirPath = "src/main/java/com/epsi/gosecuri/htmlFiles/";
 
 
     public Agent(String nom, String prenom, String password, String mission, ArrayList<String> stuffList) {
         this.nom = nom;
         this.prenom = prenom;
-        this.photoPath = "..\\ressourceFiles\\"+prenom.toCharArray()[0]+nom+".jpg";
+        this.photoPath = "../ressourceFiles/"+prenom.toCharArray()[0]+nom+".jpg";
         this.photoPath = this.photoPath.toLowerCase();
         this.password = password;
         this.mission = mission;
