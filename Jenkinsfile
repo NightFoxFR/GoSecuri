@@ -32,7 +32,7 @@ pipeline {
         }
         sh 'ls -la'
         sh 'ls -la html/'
-        sh 'ls -la html/GosecuriApp'
+        sh 'ls -la html/GoSecuriApp/'
       }
     }
 
