@@ -23,6 +23,7 @@ import java.util.Formatter;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.FileUtils;
 
 /**
@@ -319,23 +320,12 @@ public class Generator {
     }
     
     private void initHtpasswd(){
-        try{
-            MessageDigest digest;
-            digest = MessageDigest.getInstance("SHA-1");
-            digest.reset();
-            digest.update("admin".getBytes());
-            String sha1 = new String(digest.digest());
-            String line = "admin"+":{SHA}"+Base64.getEncoder().encodeToString(sha1.getBytes());
-            System.out.println(sha1);
-            System.out.println(sha1.getBytes());
-            System.out.println(Base64.getEncoder().encodeToString(sha1.getBytes()));
-            //String line = "admin"+":{SHA}"+Base64.getEncoder().java.security.MessageDigest.getInstance("SHA1").digest("admin".getBytes()));
-            try {
-                Files.writeString(Paths.get(this.generatedFilesDirPath+".htpasswd"),line+"\n");
-            } catch (IOException ex) {
-                Logger.getLogger(Generator.class.getName()).log(Level.SEVERE, null, ex);
-            } 
-        } catch (NoSuchAlgorithmException ex) {
+        System.out.println(Base64.getEncoder().encodeToString(DigestUtils.sha1("admin")));
+        System.out.println(Base64.getEncoder().encodeToString(DigestUtils.sha1Hex("admin").getBytes()));
+        String line = "admin"+":{SHA}"+Base64.getEncoder().encodeToString(DigestUtils.sha1("admin"));
+        try {
+            Files.writeString(Paths.get(this.generatedFilesDirPath+".htpasswd"),line+"\n");
+        } catch (IOException ex) {
             Logger.getLogger(Generator.class.getName()).log(Level.SEVERE, null, ex);
         }
         
@@ -344,24 +334,21 @@ public class Generator {
     private void generateHtpasswd(Agent agent){
         //Création / ou Ecriture du fichier htpasswd
         MessageDigest digest;
+        /*
+        digest = MessageDigest.getInstance("SHA-1");
+        digest.reset();
+        digest.update(agent.getPassword().getBytes("ISO-8859-1"));
+        String sha1 = new String(digest.digest());
+        String line = agent.getUsername()+":{SHA}"+Base64.getEncoder().encodeToString(sha1.getBytes("ISO-8859-1"));
+        */
+        String line = agent.getUsername()+":{SHA}"+Base64.getEncoder().encodeToString(DigestUtils.sha1(agent.getPassword()));
         try {
-            digest = MessageDigest.getInstance("SHA-1");
-            digest.reset();
-            digest.update(agent.getPassword().getBytes("ISO-8859-1"));
-            String sha1 = new String(digest.digest());
-            String line = agent.getUsername()+":{SHA}"+Base64.getEncoder().encodeToString(sha1.getBytes("ISO-8859-1"));
-            try {
-                BufferedWriter output = new BufferedWriter(new FileWriter(this.generatedFilesDirPath+".htpasswd",true));  //clears file every time
-                output.write(line);
-                output.newLine();
-                output.close();
-                //Files.writeString(Paths.get(this.generatedFilesDirPath+".htpasswd"),line);
-            } catch (IOException ex) {
-                Logger.getLogger(Generator.class.getName()).log(Level.SEVERE, null, ex);
-            } 
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(Generator.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnsupportedEncodingException ex) {
+            BufferedWriter output = new BufferedWriter(new FileWriter(this.generatedFilesDirPath+".htpasswd",true));  //clears file every time
+            output.write(line);
+            output.newLine();
+            output.close();
+            //Files.writeString(Paths.get(this.generatedFilesDirPath+".htpasswd"),line);
+        } catch (IOException ex) {
             Logger.getLogger(Generator.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
