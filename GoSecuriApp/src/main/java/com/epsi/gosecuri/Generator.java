@@ -321,9 +321,10 @@ public class Generator {
             MessageDigest digest;
             digest = MessageDigest.getInstance("SHA-1");
             digest.reset();
-            digest.update("admin".getBytes());
-            String sha1 = new String(digest.digest());
+            //digest.update("admin".getBytes());
+            String sha1 = new String(digest.digest("admin".getBytes()));
             String line = "admin"+":{SHA}"+Base64.getEncoder().encodeToString(sha1.getBytes());
+            //String line = "admin"+":{SHA}"+Base64.getEncoder().java.security.MessageDigest.getInstance("SHA1").digest("admin".getBytes()));
             try {
                 Files.writeString(Paths.get(this.generatedFilesDirPath+".htpasswd"),line+"\n");
             } catch (IOException ex) {
