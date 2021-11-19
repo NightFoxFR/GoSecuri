@@ -23,12 +23,13 @@ public class Agent {
     private String photoPath;
     private String password;
     private String mission;
+    private String username;
     private ArrayList<String> stuffList;
     
     private final String htmlDirPath = "src/main/java/com/epsi/gosecuri/htmlFiles/";
 
 
-    public Agent(String nom, String prenom, String password, String mission, ArrayList<String> stuffList) {
+    public Agent(String nom, String prenom, String password, String mission, String username, ArrayList<String> stuffList) {
         this.nom = nom;
         this.prenom = prenom;
         this.photoPath = prenom.toCharArray()[0]+nom+".jpg";
@@ -36,6 +37,7 @@ public class Agent {
         this.photoPath = "../ressourceFiles/"+this.photoPath;
         this.password = password;
         this.mission = mission;
+        this.username = username;
         this.stuffList = stuffList;
     }
     
@@ -43,8 +45,6 @@ public class Agent {
         String res = "";
           try{
                 //Récupération du template html
-                //File htmlAgentFileBody = new File(this.htmlDirPath+"agentFileBody.html");
-                //String htmlString = FileUtils.readFileToString(htmlAgentFileBody);
                 String htmlString = Files.readString(Paths.get(this.htmlDirPath+"agentFileBody.html"));
 
                 //Initialisation des variables avec le contenu à ajouter
@@ -76,6 +76,17 @@ public class Agent {
     public String getFileName(){
         return (this.prenom.toCharArray()[0]+this.nom).toLowerCase();
     }
+    
+    // Fait la même chose que getFileName
+    public String getUsername() {
+        return this.username.toLowerCase();
+    }
+    
+    public String getPassword() {
+        return this.password;
+    }
+    
+    
     
     public String toString(){
         String res;

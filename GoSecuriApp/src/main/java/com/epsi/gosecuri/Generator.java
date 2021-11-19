@@ -6,14 +6,18 @@
 package com.epsi.gosecuri;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.commons.io.FileUtils;
 
 /**
@@ -104,8 +108,6 @@ public class Generator {
         for(Agent agent:this.agentList){
             try{
                 //Récupération du template html
-                //File htmlTemplateFile = new File(this.htmlDirPath+"template.html");
-                //String htmlString = FileUtils.readFileToString(htmlTemplateFile);
                 String htmlString = Files.readString(Paths.get(this.htmlDirPath+"template.html"));
 
                 //Initialisation des variables avec le contenu à ajouter
@@ -128,8 +130,6 @@ public class Generator {
                 htmlString = htmlString.replace("$body", body);
 
                 //Création du fichier Html
-                //File newHtmlFile = new File(this.generatedFilesDirPath+agent.getFileName()+".html");
-                //FileUtils.writeStringToFile(newHtmlFile, htmlString);
                 Files.write(Paths.get(this.generatedFilesDirPath+agent.getFileName()+".html"),htmlString.getBytes());
             }
             catch(IOException e){
@@ -229,7 +229,8 @@ public class Generator {
                     }
                 }
                 fr.close(); 
-                Agent agent = new Agent(nom,prenom,password,mission,stuffList);
+                Agent agent = new Agent(nom,prenom,password,mission,name,stuffList);
+                this.generateHtpasswd(agent);
                 this.agentList.add(agent);
             }
             catch(IOException e){
@@ -309,5 +310,19 @@ public class Generator {
         catch(IOException e){
             e.printStackTrace();
         }
+    }
+    
+    private void generateHtpasswd(Agent agent){
+        //Création / ou Ecriture du fichier htpasswd
+        String line = agent.getUsername()+":"+agent.getPassword();
+        try {
+            BufferedWriter output = new BufferedWriter(new FileWriter(this.generatedFilesDirPath+".htpasswd",true));  //clears file every time
+            output.write(line);
+            output.newLine();
+            output.close();
+            //Files.writeString(Paths.get(this.generatedFilesDirPath+".htpasswd"),line);
+        } catch (IOException ex) {
+            Logger.getLogger(Generator.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }
 }
