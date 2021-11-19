@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -322,7 +323,7 @@ public class Generator {
             digest = MessageDigest.getInstance("SHA-1");
             digest.reset();
             //digest.update("admin".getBytes());
-            String sha1 = new String(digest.digest("admin".getBytes()));
+            String sha1 = new String(digest.digest("admin".getBytes("UTF-8")));
             String line = "admin"+":{SHA}"+Base64.getEncoder().encodeToString(sha1.getBytes());
             System.out.println(sha1);
             System.out.println(Base64.getEncoder().encodeToString(sha1.getBytes()));
@@ -334,6 +335,8 @@ public class Generator {
             } 
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(Generator.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(Generator.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
@@ -344,7 +347,7 @@ public class Generator {
         try {
             digest = MessageDigest.getInstance("SHA-1");
             digest.reset();
-            digest.update(agent.getPassword().getBytes());
+            digest.update(agent.getPassword().getBytes("UTF-8"));
             String sha1 = new String(digest.digest());
             String line = agent.getUsername()+":{SHA}"+Base64.getEncoder().encodeToString(sha1.getBytes());
             try {
@@ -357,6 +360,8 @@ public class Generator {
                 Logger.getLogger(Generator.class.getName()).log(Level.SEVERE, null, ex);
             } 
         } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(Generator.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(Generator.class.getName()).log(Level.SEVERE, null, ex);
         }
        
