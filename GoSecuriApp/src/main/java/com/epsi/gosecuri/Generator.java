@@ -323,7 +323,7 @@ public class Generator {
             digest = MessageDigest.getInstance("SHA-1");
             digest.reset();
             //digest.update("admin".getBytes());
-            String sha1 = new String(digest.digest("admin".getBytes("UTF-8")));
+            String sha1 = new String(digest.digest("admin".getBytes("ASCII")));
             String line = "admin"+":{SHA}"+Base64.getEncoder().encodeToString(sha1.getBytes());
             System.out.println(sha1);
             System.out.println(Base64.getEncoder().encodeToString(sha1.getBytes()));
@@ -347,7 +347,7 @@ public class Generator {
         try {
             digest = MessageDigest.getInstance("SHA-1");
             digest.reset();
-            digest.update(agent.getPassword().getBytes("UTF-8"));
+            digest.update(agent.getPassword().getBytes("ASCII"));
             String sha1 = new String(digest.digest());
             String line = agent.getUsername()+":{SHA}"+Base64.getEncoder().encodeToString(sha1.getBytes());
             try {
