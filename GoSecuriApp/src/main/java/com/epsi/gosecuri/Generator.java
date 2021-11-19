@@ -323,10 +323,10 @@ public class Generator {
             digest = MessageDigest.getInstance("SHA-1");
             digest.reset();
             //digest.update("admin".getBytes());
-            String sha1 = new String(digest.digest("admin".getBytes("ASCII")));
-            String line = "admin"+":{SHA}"+Base64.getEncoder().encodeToString(sha1.getBytes());
-            System.out.println(sha1);
-            System.out.println(Base64.getEncoder().encodeToString(sha1.getBytes()));
+            String sha1 = new String(digest.digest("admin".getBytes("ISO-8859-1")));
+            String line = "admin"+":{SHA}"+Base64.getEncoder().encodeToString(sha1.getBytes("ISO-8859-1"));
+            System.out.println(sha1.getBytes("ISO-8859-1"));
+            System.out.println(Base64.getEncoder().encodeToString(sha1.getBytes("ISO-8859-1")));
             //String line = "admin"+":{SHA}"+Base64.getEncoder().java.security.MessageDigest.getInstance("SHA1").digest("admin".getBytes()));
             try {
                 Files.writeString(Paths.get(this.generatedFilesDirPath+".htpasswd"),line+"\n");
@@ -347,9 +347,9 @@ public class Generator {
         try {
             digest = MessageDigest.getInstance("SHA-1");
             digest.reset();
-            digest.update(agent.getPassword().getBytes("ASCII"));
+            digest.update(agent.getPassword().getBytes("ISO-8859-1"));
             String sha1 = new String(digest.digest());
-            String line = agent.getUsername()+":{SHA}"+Base64.getEncoder().encodeToString(sha1.getBytes());
+            String line = agent.getUsername()+":{SHA}"+Base64.getEncoder().encodeToString(sha1.getBytes("ISO-8859-1"));
             try {
                 BufferedWriter output = new BufferedWriter(new FileWriter(this.generatedFilesDirPath+".htpasswd",true));  //clears file every time
                 output.write(line);
