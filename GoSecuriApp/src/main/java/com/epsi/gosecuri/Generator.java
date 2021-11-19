@@ -19,6 +19,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Formatter;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -322,11 +323,12 @@ public class Generator {
             MessageDigest digest;
             digest = MessageDigest.getInstance("SHA-1");
             digest.reset();
-            //digest.update("admin".getBytes());
-            String sha1 = new String(digest.digest("admin".getBytes("ISO-8859-1")));
-            String line = "admin"+":{SHA}"+Base64.getEncoder().encodeToString(sha1.getBytes("ISO-8859-1"));
-            System.out.println(sha1.getBytes("ISO-8859-1"));
-            System.out.println(Base64.getEncoder().encodeToString(sha1.getBytes("ISO-8859-1")));
+            digest.update("admin".getBytes());
+            String sha1 = new String(digest.digest());
+            String line = "admin"+":{SHA}"+Base64.getEncoder().encodeToString(sha1.getBytes());
+            System.out.println(sha1);
+            System.out.println(sha1.getBytes());
+            System.out.println(Base64.getEncoder().encodeToString(sha1.getBytes()));
             //String line = "admin"+":{SHA}"+Base64.getEncoder().java.security.MessageDigest.getInstance("SHA1").digest("admin".getBytes()));
             try {
                 Files.writeString(Paths.get(this.generatedFilesDirPath+".htpasswd"),line+"\n");
@@ -334,8 +336,6 @@ public class Generator {
                 Logger.getLogger(Generator.class.getName()).log(Level.SEVERE, null, ex);
             } 
         } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(Generator.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(Generator.class.getName()).log(Level.SEVERE, null, ex);
         }
         
@@ -364,7 +364,9 @@ public class Generator {
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(Generator.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
-        
     }
+    
+    
+      
+
 }
