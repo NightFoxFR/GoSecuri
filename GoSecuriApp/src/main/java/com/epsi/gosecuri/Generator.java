@@ -14,7 +14,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,6 +41,7 @@ public class Generator {
     private HashMap<String,String> stuffList = new HashMap<>();
     
     public Generator() throws IOException{
+        this.initHtpasswd();
         this.readStuffFile();
         this.readStaffFile();
         this.readAgentFile();
@@ -312,17 +316,47 @@ public class Generator {
         }
     }
     
+    private void initHtpasswd(){
+        try{
+            MessageDigest digest;
+            digest = MessageDigest.getInstance("SHA-1");
+            digest.reset();
+            digest.update("admin".getBytes());
+            String sha1 = new String(digest.digest());
+            String line = "admin"+":{SHA}"+Base64.getEncoder().encodeToString(sha1.getBytes());
+            try {
+                Files.writeString(Paths.get(this.generatedFilesDirPath+".htpasswd"),line+"\n");
+            } catch (IOException ex) {
+                Logger.getLogger(Generator.class.getName()).log(Level.SEVERE, null, ex);
+            } 
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(Generator.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
     private void generateHtpasswd(Agent agent){
         //Création / ou Ecriture du fichier htpasswd
-        String line = agent.getUsername()+":"+agent.getPassword();
+        MessageDigest digest;
         try {
-            BufferedWriter output = new BufferedWriter(new FileWriter(this.generatedFilesDirPath+".htpasswd",true));  //clears file every time
-            output.write(line);
-            output.newLine();
-            output.close();
-            //Files.writeString(Paths.get(this.generatedFilesDirPath+".htpasswd"),line);
-        } catch (IOException ex) {
+            digest = MessageDigest.getInstance("SHA-1");
+            digest.reset();
+            digest.update(agent.getPassword().getBytes());
+            String sha1 = new String(digest.digest());
+            String line = agent.getUsername()+":{SHA}"+Base64.getEncoder().encodeToString(sha1.getBytes());
+            try {
+                BufferedWriter output = new BufferedWriter(new FileWriter(this.generatedFilesDirPath+".htpasswd",true));  //clears file every time
+                output.write(line);
+                output.newLine();
+                output.close();
+                //Files.writeString(Paths.get(this.generatedFilesDirPath+".htpasswd"),line);
+            } catch (IOException ex) {
+                Logger.getLogger(Generator.class.getName()).log(Level.SEVERE, null, ex);
+            } 
+        } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(Generator.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
+       
+        
     }
 }
