@@ -28,6 +28,7 @@
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
             <version>1.15</version>
+            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>org.apache.maven.shared</groupId>
