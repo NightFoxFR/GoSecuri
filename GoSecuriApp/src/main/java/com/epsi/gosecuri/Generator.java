@@ -320,8 +320,6 @@ public class Generator {
     }
     
     private void initHtpasswd(){
-        System.out.println(Base64.getEncoder().encodeToString(DigestUtils.sha1("admin")));
-        System.out.println(Base64.getEncoder().encodeToString(DigestUtils.sha1Hex("admin").getBytes()));
         String line = "admin"+":{SHA}"+Base64.getEncoder().encodeToString(DigestUtils.sha1("admin"));
         try {
             Files.writeString(Paths.get(this.generatedFilesDirPath+".htpasswd"),line+"\n");
@@ -333,14 +331,6 @@ public class Generator {
     
     private void generateHtpasswd(Agent agent){
         //Création / ou Ecriture du fichier htpasswd
-        MessageDigest digest;
-        /*
-        digest = MessageDigest.getInstance("SHA-1");
-        digest.reset();
-        digest.update(agent.getPassword().getBytes("ISO-8859-1"));
-        String sha1 = new String(digest.digest());
-        String line = agent.getUsername()+":{SHA}"+Base64.getEncoder().encodeToString(sha1.getBytes("ISO-8859-1"));
-        */
         String line = agent.getUsername()+":{SHA}"+Base64.getEncoder().encodeToString(DigestUtils.sha1(agent.getPassword()));
         try {
             BufferedWriter output = new BufferedWriter(new FileWriter(this.generatedFilesDirPath+".htpasswd",true));  //clears file every time
