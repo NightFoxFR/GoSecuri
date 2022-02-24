@@ -27,8 +27,8 @@ pipeline {
         //docker {
           //image 'gosecuri:latest'
           //args '-u root --privileged'
-        }
-      }
+        //}
+      //}
       steps {
         
         sh 'pwd && cat /etc/apache2/apache2.conf'
