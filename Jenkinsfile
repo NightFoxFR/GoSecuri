@@ -29,9 +29,13 @@ pipeline {
         }
         //}
         sh 'pwd && ls -a'
-        sh 'cp html/GoSecuriApp/src/main/java/com/epsi/gosecuri/generatedFiles/.htpasswd  /var/wwww/html/'
-        sh 'cp html/GoSecuriApp/src/main/java/com/epsi/gosecuri/generatedFiles/*  /var/wwww/html/'
-        sh 'cp -r html/GoSecuriApp/src/main/java/com/epsi/gosecuri/ressourceFiles/ /var/wwww/html/'
+        sh 'cp GoSecuriApp/src/main/java/com/epsi/gosecuri/generatedFiles/.htpasswd  /var/wwww/html/'
+        sh 'cp GoSecuriApp/src/main/java/com/epsi/gosecuri/generatedFiles/*  /var/wwww/html/'
+        sh 'cp -r GoSecuriApp/src/main/java/com/epsi/gosecuri/ressourceFiles/ /var/wwww/html/'
+        
+         //sh 'cp html/GoSecuriApp/src/main/java/com/epsi/gosecuri/generatedFiles/.htpasswd  /var/wwww/html/'
+        //sh 'cp html/GoSecuriApp/src/main/java/com/epsi/gosecuri/generatedFiles/*  /var/wwww/html/'
+        //sh 'cp -r html/GoSecuriApp/src/main/java/com/epsi/gosecuri/ressourceFiles/ /var/wwww/html/'
         }
       }
     
