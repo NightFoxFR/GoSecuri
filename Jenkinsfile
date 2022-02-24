@@ -21,12 +21,13 @@ pipeline {
 
     stage('Deploy') {
       steps {
-        sh 'pwd && cat /etc/nginx/conf.d/default.conf'
+        //sh 'pwd && cat /etc/nginx/conf.d/default.conf'
+        dir('/usr/share/nginx/html'){
         dir(path: 'html') {
           unstash 'generatedFiles'
           unstash 'ressourceFiles'
         }
-
+        }
         
         sh 'cp html/GoSecuriApp/src/main/java/com/epsi/gosecuri/generatedFiles/.htpasswd  /usr/share/nginx/html/'
         sh 'cp html/GoSecuriApp/src/main/java/com/epsi/gosecuri/generatedFiles/*  /usr/share/nginx/html/'
