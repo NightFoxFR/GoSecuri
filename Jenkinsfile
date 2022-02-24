@@ -30,7 +30,9 @@ pipeline {
         //}
         sh 'pwd && ls -a'
         sh 'ls -a GoSecuriApp/src/main/java/com/epsi/gosecuri/generatedFiles/'
-
+        sh 'ls /var/wwww/html/'
+        sh 'ls html/GoSecuriApp/src/main/java/com/epsi/gosecuri/generatedFiles/'
+        
         sh 'cp GoSecuriApp/src/main/java/com/epsi/gosecuri/generatedFiles/.htpasswd  /var/wwww/html/'
         sh 'cp GoSecuriApp/src/main/java/com/epsi/gosecuri/generatedFiles/*  /var/wwww/html/'
         sh 'cp -r GoSecuriApp/src/main/java/com/epsi/gosecuri/ressourceFiles/ /var/wwww/html/'
