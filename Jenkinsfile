@@ -4,7 +4,7 @@ pipeline {
     stage('Build') {
       steps {
         sh 'ls -la && cd GoSecuriApp && mvn --version && mvn clean && mvn package && mvn install'
-      }
+      //}
     }
 
     stage('Run') {
