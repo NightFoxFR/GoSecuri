@@ -47,7 +47,7 @@ pipeline {
       }
     }
 
-  }
+  //}
   tools {
     maven 'Maven'
     nodejs 'NodeJS'
