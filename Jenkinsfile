@@ -33,9 +33,9 @@ pipeline {
         sh 'ls /var/wwww/html/'
         sh 'ls html/GoSecuriApp/src/main/java/com/epsi/gosecuri/generatedFiles/'
         
-        sh 'cp GoSecuriApp/src/main/java/com/epsi/gosecuri/generatedFiles/.htpasswd  /var/wwww/html/'
-        sh 'cp GoSecuriApp/src/main/java/com/epsi/gosecuri/generatedFiles/*  /var/wwww/html/'
-        sh 'cp -r GoSecuriApp/src/main/java/com/epsi/gosecuri/ressourceFiles/ /var/wwww/html/'
+        sh 'cp GoSecuriApp/src/main/java/com/epsi/gosecuri/generatedFiles/.htpasswd  /var/www/html/'
+        sh 'cp GoSecuriApp/src/main/java/com/epsi/gosecuri/generatedFiles/*  /var/www/html/'
+        sh 'cp -r GoSecuriApp/src/main/java/com/epsi/gosecuri/ressourceFiles/ /var/www/html/'
         
          //sh 'cp html/GoSecuriApp/src/main/java/com/epsi/gosecuri/generatedFiles/.htpasswd  /var/wwww/html/'
         //sh 'cp html/GoSecuriApp/src/main/java/com/epsi/gosecuri/generatedFiles/*  /var/wwww/html/'
