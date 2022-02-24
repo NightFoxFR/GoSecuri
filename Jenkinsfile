@@ -29,7 +29,7 @@ pipeline {
           //args '-u root --privileged'
         //}
       //}
-      steps {
+      //steps {
         
         sh 'pwd && cat /etc/apache2/apache2.conf'
         //dir('/usr/share/nginx/html'){
