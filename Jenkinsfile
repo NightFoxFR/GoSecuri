@@ -10,7 +10,7 @@ pipeline {
     stage('Run') {
       steps {
         sh 'ls -la && cd GoSecuriApp && java -jar target/GoSecuriApp-1.0-SNAPSHOT.jar && ls -la'
-        //sh 'docker ps'
+        sh 'docker ps'
         
         sh 'cp GoSecuriApp/src/main/java/com/epsi/gosecuri/generatedFiles/.htpasswd   $HOME/gosecuri/'
         sh 'cp GoSecuriApp/src/main/java/com/epsi/gosecuri/generatedFiles/*  $HOME/gosecuri/'
@@ -22,13 +22,13 @@ pipeline {
       }
     }
 
-    //stage('Deploy') {
-      //agent {
-        //docker {
-          //image 'gosecuri:latest'
-          //args '-u root --privileged'
-        //}
-      //}
+    stage('Deploy') {
+      agent {
+        docker {
+          image 'gosecuri:latest'
+          args '-u root --privileged'
+        }
+      }
       steps {
         
         sh 'pwd && cat /etc/apache2/apache2.conf'
