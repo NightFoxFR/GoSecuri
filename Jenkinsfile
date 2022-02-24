@@ -22,7 +22,7 @@ pipeline {
     stage('Deploy') {
       steps {
         //sh 'pwd && cat /etc/nginx/conf.d/default.conf'
-        dir('/usr/share/nginx/html'){
+        //dir('/usr/share/nginx/html'){
         dir(path: 'html') {
           unstash 'generatedFiles'
           unstash 'ressourceFiles'
